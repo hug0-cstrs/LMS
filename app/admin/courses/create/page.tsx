@@ -1,5 +1,6 @@
 "use client";
 
+import { Uploader } from "@/components/file-uploader/Uploader";
 import { RichTextEditor } from "@/components/rich-text-editor/Editor";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -158,11 +159,6 @@ export default function CourseCreationPage() {
                     <FormLabel>Description</FormLabel>
                     <FormControl>
                       <RichTextEditor field={field} />
-                      {/* <Textarea
-                        placeholder="Description"
-                        {...field}
-                        className="min-h-[120px]"
-                      /> */}
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -177,7 +173,8 @@ export default function CourseCreationPage() {
                   <FormItem className="w-full">
                     <FormLabel>Thumbnail image</FormLabel>
                     <FormControl>
-                      <Input placeholder="Thumbnail url" {...field} />
+                      <Uploader />
+                      {/* <Input placeholder="Thumbnail url" {...field} /> */}
                     </FormControl>
                     <FormMessage />
                   </FormItem>

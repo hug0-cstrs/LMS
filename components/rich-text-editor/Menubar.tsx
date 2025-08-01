@@ -214,7 +214,7 @@ export function Menubar({ editor }: iAppProps) {
                 <AlignLeftIcon />
               </Toggle>
             </TooltipTrigger>
-            <TooltipContent>Align left</TooltipContent>
+            <TooltipContent>Align Left</TooltipContent>
           </Tooltip>
 
           {/*text align center*/}
@@ -234,7 +234,7 @@ export function Menubar({ editor }: iAppProps) {
                 <AlignCenterIcon />
               </Toggle>
             </TooltipTrigger>
-            <TooltipContent>Align center</TooltipContent>
+            <TooltipContent>Align Center</TooltipContent>
           </Tooltip>
 
           {/*text align right*/}
@@ -254,7 +254,7 @@ export function Menubar({ editor }: iAppProps) {
                 <AlignRightIcon />
               </Toggle>
             </TooltipTrigger>
-            <TooltipContent>Align right</TooltipContent>
+            <TooltipContent>Align Right</TooltipContent>
           </Tooltip>
         </div>
 

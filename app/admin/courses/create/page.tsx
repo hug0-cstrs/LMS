@@ -1,5 +1,6 @@
 "use client";
 
+import { RichTextEditor } from "@/components/rich-text-editor/Editor";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -156,11 +157,12 @@ export default function CourseCreationPage() {
                   <FormItem className="w-full">
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <Textarea
+                      <RichTextEditor />
+                      {/* <Textarea
                         placeholder="Description"
                         {...field}
                         className="min-h-[120px]"
-                      />
+                      /> */}
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -200,7 +202,7 @@ export default function CourseCreationPage() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {courseCategories.map((category) => (
+                          {courseCategories.map(category => (
                             <SelectItem key={category} value={category}>
                               {category}
                             </SelectItem>
@@ -229,7 +231,7 @@ export default function CourseCreationPage() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {courseLevels.map((level) => (
+                          {courseLevels.map(level => (
                             <SelectItem key={level} value={level}>
                               {level}
                             </SelectItem>
@@ -253,7 +255,7 @@ export default function CourseCreationPage() {
                           type="number"
                           placeholder="Duration"
                           value={field.value?.toString() || ""}
-                          onChange={(e) =>
+                          onChange={e =>
                             field.onChange(Number(e.target.value) || 0)
                           }
                         />
@@ -275,7 +277,7 @@ export default function CourseCreationPage() {
                           type="number"
                           placeholder="Price"
                           value={field.value?.toString() || ""}
-                          onChange={(e) =>
+                          onChange={e =>
                             field.onChange(Number(e.target.value) || 0)
                           }
                         />
@@ -303,7 +305,7 @@ export default function CourseCreationPage() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {courseStatus.map((status) => (
+                        {courseStatus.map(status => (
                           <SelectItem key={status} value={status}>
                             {status}
                           </SelectItem>

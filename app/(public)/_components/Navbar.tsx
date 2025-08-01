@@ -39,7 +39,7 @@ export function Navbar() {
 
         <nav className="hidden md:flex md:flex-1 md:justify-between md:items-center">
           <div className="flex items-center space-x-2">
-            {navigationItems.map((item) => (
+            {navigationItems.map(item => (
               <Link
                 key={item.name}
                 href={item.href}

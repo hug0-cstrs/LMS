@@ -1,4 +1,3 @@
-
 import { LoginForm } from "./_components/LoginForm";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
@@ -13,7 +12,5 @@ export default async function LoginPage() {
     redirect("/");
   }
 
-  return (
-    <LoginForm />
-  );
+  return <LoginForm />;
 }

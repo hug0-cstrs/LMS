@@ -37,7 +37,7 @@ export default function VerifyRequest() {
             toast.success("Email verified");
             router.push("/");
           },
-          onError: (error) => {
+          onError: error => {
             toast.error("Error verifying Email/OTP");
           },
         },
@@ -57,7 +57,7 @@ export default function VerifyRequest() {
         <div className="flex flex-col items-center space-y-2">
           <InputOTP
             value={otp}
-            onChange={(value) => setOtp(value)}
+            onChange={value => setOtp(value)}
             maxLength={6}
             className="gap-2"
           >

@@ -1,19 +1,16 @@
 import { cn } from "@/lib/utils";
-import { CloudUploadIcon, ImageIcon, UploadIcon } from "lucide-react";
+import { CloudUploadIcon, ImageIcon, UploadIcon, XIcon } from "lucide-react";
+import Image from "next/image";
 import { Button } from "../ui/button";
 
-export function RenderEmptyState({
-  isDragActive,
-}: {
-  isDragActive: boolean;
-}) {
+export function RenderEmptyState({ isDragActive }: { isDragActive: boolean }) {
   return (
     <div className="text-center">
       <div className="flex items-center justify-center mx-auto size-12 rounded-full bg-muted mb-4">
         <CloudUploadIcon
           className={cn(
             "size-6 text-muted-foreground",
-            isDragActive && "text-primary",
+            isDragActive && "text-primary"
           )}
         />
       </div>
@@ -43,6 +40,48 @@ export function RenderErrorState() {
         <UploadIcon className="size-4 mr-2" />
         Retry File Selection
       </Button>
+    </div>
+  );
+}
+
+export function RenderUploadedState({ previewUrl }: { previewUrl: string }) {
+  return (
+    <div>
+      <Image
+        src={previewUrl}
+        alt="Uploaded file"
+        fill
+        className="object-contain p-2"
+      />
+
+      <Button
+        type="button"
+        size="icon"
+        variant="destructive"
+        className={cn("absolute top-4 right-4")}
+      >
+        <XIcon className="size-4" />
+      </Button>
+    </div>
+  );
+}
+
+export function RenderUploadingState({
+  progress,
+  file,
+}: {
+  progress: number;
+  file: File;
+}) {
+  return (
+    <div className="flex items-center justify-center text-center flex-col">
+      <p>{progress}%</p>
+      <p className="mt-2 text-sm font-medium text-muted-foreground">
+        Uploading...
+      </p>
+      <p className="mt-1 text-xs text-muted-foreground truncate max-w-xs">
+        {file.name}
+      </p>
     </div>
   );
 }

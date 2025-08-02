@@ -1,5 +1,11 @@
 import { cn } from "@/lib/utils";
-import { CloudUploadIcon, ImageIcon, UploadIcon, XIcon } from "lucide-react";
+import {
+  CloudUploadIcon,
+  ImageIcon,
+  Loader2,
+  UploadIcon,
+  XIcon,
+} from "lucide-react";
 import Image from "next/image";
 import { Button } from "../ui/button";
 
@@ -16,7 +22,9 @@ export function RenderEmptyState({ isDragActive }: { isDragActive: boolean }) {
       </div>
       <p className="text-base text-foreground font-semibold">
         Drop your files here or{" "}
-        <span className="text-primary font-bold">click to select files</span>
+        <span className="text-primary font-bold cursor-pointer">
+          click to select files
+        </span>
       </p>
       <Button type="button" size="sm" className="mt-4">
         <UploadIcon className="size-4 mr-2" />
@@ -44,7 +52,15 @@ export function RenderErrorState() {
   );
 }
 
-export function RenderUploadedState({ previewUrl }: { previewUrl: string }) {
+export function RenderUploadedState({
+  previewUrl,
+  isDeleting,
+  handleRemoveFile,
+}: {
+  previewUrl: string;
+  isDeleting: boolean;
+  handleRemoveFile: () => void;
+}) {
   return (
     <div>
       <Image
@@ -55,12 +71,17 @@ export function RenderUploadedState({ previewUrl }: { previewUrl: string }) {
       />
 
       <Button
-        type="button"
         size="icon"
         variant="destructive"
-        className={cn("absolute top-4 right-4")}
+        className={cn("absolute top-4 right-4 cursor-pointer")}
+        disabled={isDeleting}
+        onClick={handleRemoveFile}
       >
-        <XIcon className="size-4" />
+        {isDeleting ? (
+          <Loader2 className="size-4 animate-spin" />
+        ) : (
+          <XIcon className="size-4" />
+        )}
       </Button>
     </div>
   );

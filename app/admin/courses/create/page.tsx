@@ -59,7 +59,7 @@ export default function CourseCreationPage() {
       duration: 0,
       level: "Beginner",
       category: "Web Development",
-      status: "Draft",
+      status: "Published",
       slug: "",
       smallDescription: "",
     },

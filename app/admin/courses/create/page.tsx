@@ -49,7 +49,7 @@ export default function CourseCreationPage() {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
-  const form = useForm({
+  const form = useForm<CourseSchemaType>({
     resolver: zodResolver(courseSchema),
     defaultValues: {
       title: "",
@@ -67,7 +67,15 @@ export default function CourseCreationPage() {
 
   async function onSubmit(values: CourseSchemaType) {
     startTransition(async () => {
-      const { data: result, error } = await tryCatch(createCourse(values));
+      // S'assurer que price et duration sont des nombres
+      const processedValues = {
+        ...values,
+        price: Number(values.price) || 0,
+        duration: Number(values.duration) || 0,
+      };
+      const { data: result, error } = await tryCatch(
+        createCourse(processedValues)
+      );
       if (error) {
         toast.error("An unexpected error occurred. Please try again.");
         return;

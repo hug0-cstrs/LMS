@@ -28,9 +28,9 @@ export const courseSchema = z.object({
 
   fileKey: z.string().min(1, { message: "File key is required" }),
 
-  price: z.coerce.number().min(1, { message: "Price must be positive number" }),
+  price: z.number().min(1, { message: "Price must be positive number" }),
 
-  duration: z.coerce
+  duration: z
     .number()
     .min(1, { message: "Duration must be at least 1 hour" })
     .max(500, { message: "Duration must be less than 500 hours" }),
@@ -51,4 +51,10 @@ export const courseSchema = z.object({
   status: z.enum(courseStatus, { message: "Invalid course status" }),
 });
 
+export const chapterSchema = z.object({
+  name: z.string().min(3, { message: "Name must be at least 3 characters" }),
+  courseId: z.string().uuid({ message: "Invalid course ID" }),
+});
+
 export type CourseSchemaType = z.infer<typeof courseSchema>;
+export type ChapterSchemaType = z.infer<typeof chapterSchema>;

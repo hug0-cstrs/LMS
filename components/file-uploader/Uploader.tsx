@@ -12,6 +12,7 @@ import {
   RenderUploadedState,
   RenderUploadingState,
 } from "./RenderState";
+import { useConstructUrl } from "@/hooks/use-construct-url";
 
 interface UploaderState {
   id: string | null;
@@ -31,6 +32,7 @@ interface iAppProps {
 }
 
 export function Uploader({ value, onChange }: iAppProps) {
+  const fileUrl = value ? useConstructUrl(value) : undefined;
   const [fileState, setFileState] = useState<UploaderState>({
     error: false,
     id: null,
@@ -40,6 +42,7 @@ export function Uploader({ value, onChange }: iAppProps) {
     isDeleting: false,
     fileType: "image",
     key: value,
+    objectUrl: fileUrl,
   });
 
   async function uploadFile(file: File) {
@@ -152,7 +155,7 @@ export function Uploader({ value, onChange }: iAppProps) {
         uploadFile(file);
       }
     },
-    [fileState.objectUrl]
+    [fileState.objectUrl],
   );
 
   async function handleRemoveFile() {
@@ -217,11 +220,11 @@ export function Uploader({ value, onChange }: iAppProps) {
   function rejectedFiles(fileRejection: FileRejection[]) {
     if (fileRejection.length) {
       const tooManyFiles = fileRejection.find(
-        (rejection) => rejection.errors[0].code === "too-many-files"
+        (rejection) => rejection.errors[0].code === "too-many-files",
       );
 
       const fileSizeTooBig = fileRejection.find(
-        (rejection) => rejection.errors[0].code === "file-too-large"
+        (rejection) => rejection.errors[0].code === "file-too-large",
       );
 
       if (fileSizeTooBig) {
@@ -232,6 +235,15 @@ export function Uploader({ value, onChange }: iAppProps) {
         toast.error("Too many files selected");
       }
     }
+  }
+
+  function handleRetryUpload() {
+    setFileState((prev) => ({
+      ...prev,
+      error: false,
+      objectUrl: undefined,
+      key: undefined,
+    }));
   }
 
   function renderContent() {
@@ -245,7 +257,7 @@ export function Uploader({ value, onChange }: iAppProps) {
     }
 
     if (fileState.error) {
-      return <RenderErrorState />;
+      return <RenderErrorState onRetry={handleRetryUpload} />;
     }
 
     if (fileState.objectUrl) {
@@ -278,7 +290,8 @@ export function Uploader({ value, onChange }: iAppProps) {
     multiple: false,
     maxSize: 5 * 1024 * 1024, // 5MB
     onDropRejected: rejectedFiles,
-    disabled: fileState.uploading || !!fileState.objectUrl,
+    disabled:
+      fileState.uploading || (!!fileState.objectUrl && !fileState.error),
   });
 
   return (
@@ -289,7 +302,7 @@ export function Uploader({ value, onChange }: iAppProps) {
           "relative border-2 border-dashed transition-colors duration-200 ease-in-out w-full h-64",
           isDragActive
             ? "border-primary bg-primary/10 border-solid"
-            : "border-border hover:border-primary"
+            : "border-border hover:border-primary",
         )}
       >
         <CardContent className="flex items-center justify-center h-full p-4">

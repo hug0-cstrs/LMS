@@ -16,7 +16,7 @@ export function RenderEmptyState({ isDragActive }: { isDragActive: boolean }) {
         <CloudUploadIcon
           className={cn(
             "size-6 text-muted-foreground",
-            isDragActive && "text-primary"
+            isDragActive && "text-primary",
           )}
         />
       </div>
@@ -34,7 +34,7 @@ export function RenderEmptyState({ isDragActive }: { isDragActive: boolean }) {
   );
 }
 
-export function RenderErrorState() {
+export function RenderErrorState({ onRetry }: { onRetry?: () => void }) {
   return (
     <div className="text-center">
       <div className="flex items-center justify-center mx-auto size-12 rounded-full bg-destructive/30 mb-4">
@@ -44,7 +44,7 @@ export function RenderErrorState() {
       <p className="text-base font-semibold">Upload Failed</p>
       <p className="text-xs mt-1 text-muted-foreground">Something went wrong</p>
 
-      <Button type="button" size="sm" className="mt-4">
+      <Button type="button" size="sm" className="mt-4" onClick={onRetry}>
         <UploadIcon className="size-4 mr-2" />
         Retry File Selection
       </Button>

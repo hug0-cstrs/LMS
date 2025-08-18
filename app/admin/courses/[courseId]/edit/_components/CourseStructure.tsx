@@ -32,7 +32,6 @@ import {
   ChevronRight,
   FileText,
   GripVertical,
-  Trash2,
 } from "lucide-react";
 import Link from "next/link";
 import { ReactNode, useEffect, useState } from "react";
@@ -41,6 +40,7 @@ import { reorderChapters, reorderLessons } from "../action";
 import { NewChapterModal } from "./NewChapterModal";
 import { NewLessonModal } from "./NewLessonModal";
 import { DeleteLesson } from "./DeleteLesson";
+import { DeleteChapter } from "./DeleteChapter";
 
 interface iAppProps {
   data: AdminCourseSingularType;
@@ -346,13 +346,7 @@ export function CourseStructure({ data }: iAppProps) {
                           </p>
                         </div>
 
-                        <Button
-                          size="icon"
-                          variant="outline"
-                          className="cursor-pointer"
-                        >
-                          <Trash2 className="size-4" />
-                        </Button>
+                        <DeleteChapter chapterId={item.id} courseId={data.id} />
                       </div>
 
                       <CollapsibleContent>

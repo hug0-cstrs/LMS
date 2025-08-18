@@ -39,6 +39,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { reorderChapters, reorderLessons } from "../action";
 import { NewChapterModal } from "./NewChapterModal";
+import { NewLessonModal } from "./NewLessonModal";
 
 interface iAppProps {
   data: AdminCourseSingularType;
@@ -397,12 +398,7 @@ export function CourseStructure({ data }: iAppProps) {
                             ))}
                           </SortableContext>
                           <div className="p-2">
-                            <Button
-                              variant="outline"
-                              className="w-full cursor-pointer"
-                            >
-                              Create New Lesson
-                            </Button>
+                            <NewLessonModal courseId={data.id} chapterId={item.id} />
                           </div>
                         </div>
                       </CollapsibleContent>

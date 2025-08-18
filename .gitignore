@@ -16,6 +16,9 @@ pnpm-lock.yaml
 # testing
 /coverage
 
+# CLAUDE
+CLAUDE.md
+
 # next.js
 /.next/
 /out/

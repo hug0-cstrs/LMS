@@ -40,6 +40,7 @@ import { toast } from "sonner";
 import { reorderChapters, reorderLessons } from "../action";
 import { NewChapterModal } from "./NewChapterModal";
 import { NewLessonModal } from "./NewLessonModal";
+import { DeleteLesson } from "./DeleteLesson";
 
 interface iAppProps {
   data: AdminCourseSingularType;
@@ -385,13 +386,7 @@ export function CourseStructure({ data }: iAppProps) {
                                       </Link>
                                     </div>
 
-                                    <Button
-                                      variant="outline"
-                                      size="icon"
-                                      className="cursor-pointer"
-                                    >
-                                      <Trash2 className="size-4" />
-                                    </Button>
+                                    <DeleteLesson lessonId={lesson.id} chapterId={item.id} courseId={data.id} />
                                   </div>
                                 )}
                               </SortableItem>

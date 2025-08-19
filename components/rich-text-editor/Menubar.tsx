@@ -46,7 +46,7 @@ export function Menubar({ editor }: iAppProps) {
                   editor.chain().focus().toggleBold().run()
                 }
                 className={cn(
-                  editor.isActive("bold") && "bg-muted text-muted-foreground",
+                  editor.isActive("bold") && "bg-muted text-muted-foreground"
                 )}
               >
                 <BoldIcon />
@@ -65,7 +65,7 @@ export function Menubar({ editor }: iAppProps) {
                   editor.chain().focus().toggleItalic().run()
                 }
                 className={cn(
-                  editor.isActive("italic") && "bg-muted text-muted-foreground",
+                  editor.isActive("italic") && "bg-muted text-muted-foreground"
                 )}
               >
                 <ItalicIcon />
@@ -84,7 +84,7 @@ export function Menubar({ editor }: iAppProps) {
                   editor.chain().focus().toggleStrike().run()
                 }
                 className={cn(
-                  editor.isActive("strike") && "bg-muted text-muted-foreground",
+                  editor.isActive("strike") && "bg-muted text-muted-foreground"
                 )}
               >
                 <StrikethroughIcon />
@@ -104,7 +104,7 @@ export function Menubar({ editor }: iAppProps) {
                 }
                 className={cn(
                   editor.isActive("heading", { level: 1 }) &&
-                    "bg-muted text-muted-foreground",
+                    "bg-muted text-muted-foreground"
                 )}
               >
                 <Heading1Icon />
@@ -124,7 +124,7 @@ export function Menubar({ editor }: iAppProps) {
                 }
                 className={cn(
                   editor.isActive("heading", { level: 2 }) &&
-                    "bg-muted text-muted-foreground",
+                    "bg-muted text-muted-foreground"
                 )}
               >
                 <Heading2Icon />
@@ -144,7 +144,7 @@ export function Menubar({ editor }: iAppProps) {
                 }
                 className={cn(
                   editor.isActive("heading", { level: 3 }) &&
-                    "bg-muted text-muted-foreground",
+                    "bg-muted text-muted-foreground"
                 )}
               >
                 <Heading3Icon />
@@ -164,7 +164,7 @@ export function Menubar({ editor }: iAppProps) {
                 }
                 className={cn(
                   editor.isActive("bulletList") &&
-                    "bg-muted text-muted-foreground",
+                    "bg-muted text-muted-foreground"
                 )}
               >
                 <ListIcon />
@@ -184,7 +184,7 @@ export function Menubar({ editor }: iAppProps) {
                 }
                 className={cn(
                   editor.isActive("orderedList") &&
-                    "bg-muted text-muted-foreground",
+                    "bg-muted text-muted-foreground"
                 )}
               >
                 <ListOrderedIcon />
@@ -208,7 +208,7 @@ export function Menubar({ editor }: iAppProps) {
                 }
                 className={cn(
                   editor.isActive("textAlign", { align: "left" }) &&
-                    "bg-muted text-muted-foreground",
+                    "bg-muted text-muted-foreground"
                 )}
               >
                 <AlignLeftIcon />
@@ -228,7 +228,7 @@ export function Menubar({ editor }: iAppProps) {
                 }
                 className={cn(
                   editor.isActive("textAlign", { align: "center" }) &&
-                    "bg-muted text-muted-foreground",
+                    "bg-muted text-muted-foreground"
                 )}
               >
                 <AlignCenterIcon />
@@ -248,7 +248,7 @@ export function Menubar({ editor }: iAppProps) {
                 }
                 className={cn(
                   editor.isActive("textAlign", { align: "right" }) &&
-                    "bg-muted text-muted-foreground",
+                    "bg-muted text-muted-foreground"
                 )}
               >
                 <AlignRightIcon />

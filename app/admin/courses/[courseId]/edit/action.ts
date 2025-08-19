@@ -377,7 +377,7 @@ export async function deleteChapter({
             id: true,
             position: true,
           },
-        }
+        },
       },
     });
 
@@ -390,7 +390,7 @@ export async function deleteChapter({
 
     const chapters = courseWithChapters.chapter;
 
-    const chapterToDelete = chapters.find((chapter) => chapter.id === chapterId);
+    const chapterToDelete = chapters.find(chapter => chapter.id === chapterId);
 
     if (!chapterToDelete) {
       return {
@@ -399,15 +399,16 @@ export async function deleteChapter({
       };
     }
 
-    const remainingChapters = chapters.filter((chapter) => chapter.id !== chapterId);
+    const remainingChapters = chapters.filter(
+      chapter => chapter.id !== chapterId
+    );
 
     const updates = remainingChapters.map((chapter, index) => {
       return prisma.chapter.update({
         where: { id: chapter.id },
         data: { position: index + 1 },
       });
-    }
-    );
+    });
 
     await prisma.$transaction([
       ...updates,

@@ -11,14 +11,14 @@ const aj = arcjet
     detectBot({
       mode: "LIVE",
       allow: [],
-    }),
+    })
   )
   .withRule(
     fixedWindow({
       mode: "LIVE",
       window: "1m", // 1 minute
       max: 5, // 5 requests per minute
-    }),
+    })
   );
 
 export async function DELETE(request: NextRequest) {
@@ -42,7 +42,7 @@ export async function DELETE(request: NextRequest) {
     if (!key) {
       return NextResponse.json(
         { error: "Missing or invalid key" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -55,12 +55,12 @@ export async function DELETE(request: NextRequest) {
 
     return NextResponse.json(
       { message: "File deleted successfully" },
-      { status: 200 },
+      { status: 200 }
     );
   } catch {
     return NextResponse.json(
       { error: "Something went wrong" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

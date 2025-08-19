@@ -31,10 +31,10 @@ export function LoginForm() {
         fetchOptions: {
           onSuccess: () => {
             toast.success(
-              "Signed in with Github, you will be redirected to the home page",
+              "Signed in with Github, you will be redirected to the home page"
             );
           },
-          onError: (error) => {
+          onError: error => {
             toast.error("Internal server error");
           },
         },
@@ -52,7 +52,7 @@ export function LoginForm() {
             toast.success("Verification code sent to your email");
             router.push(`/verify-request?email=${email}`);
           },
-          onError: (error) => {
+          onError: error => {
             toast.error("Error sending email");
           },
         },
@@ -103,7 +103,7 @@ export function LoginForm() {
               type="email"
               placeholder="m@exemple.com"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               required
             />
           </div>

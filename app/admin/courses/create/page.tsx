@@ -226,7 +226,7 @@ export default function CourseCreationPage() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {courseCategories.map((category) => (
+                          {courseCategories.map(category => (
                             <SelectItem key={category} value={category}>
                               {category}
                             </SelectItem>
@@ -255,7 +255,7 @@ export default function CourseCreationPage() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {courseLevels.map((level) => (
+                          {courseLevels.map(level => (
                             <SelectItem key={level} value={level}>
                               {level}
                             </SelectItem>
@@ -279,7 +279,7 @@ export default function CourseCreationPage() {
                           type="number"
                           placeholder="Duration"
                           value={field.value?.toString() || ""}
-                          onChange={(e) =>
+                          onChange={e =>
                             field.onChange(Number(e.target.value) || 0)
                           }
                         />
@@ -301,7 +301,7 @@ export default function CourseCreationPage() {
                           type="number"
                           placeholder="Price"
                           value={field.value?.toString() || ""}
-                          onChange={(e) =>
+                          onChange={e =>
                             field.onChange(Number(e.target.value) || 0)
                           }
                         />
@@ -329,7 +329,7 @@ export default function CourseCreationPage() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {courseStatus.map((status) => (
+                        {courseStatus.map(status => (
                           <SelectItem key={status} value={status}>
                             {status}
                           </SelectItem>

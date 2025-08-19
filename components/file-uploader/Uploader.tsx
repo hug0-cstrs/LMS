@@ -46,7 +46,7 @@ export function Uploader({ value, onChange }: iAppProps) {
   });
 
   async function uploadFile(file: File) {
-    setFileState((prev) => ({
+    setFileState(prev => ({
       ...prev,
       uploading: true,
       progress: 0,
@@ -69,7 +69,7 @@ export function Uploader({ value, onChange }: iAppProps) {
 
       if (!presignedResponse.ok) {
         toast.error("Error to generate presigned URL");
-        setFileState((prev) => ({
+        setFileState(prev => ({
           ...prev,
           uploading: false,
           progress: 0,
@@ -84,10 +84,10 @@ export function Uploader({ value, onChange }: iAppProps) {
       await new Promise<void>((resolve, reject) => {
         const xhr = new XMLHttpRequest();
 
-        xhr.upload.onprogress = (event) => {
+        xhr.upload.onprogress = event => {
           if (event.lengthComputable) {
             const percentageCompleted = (event.loaded / event.total) * 100;
-            setFileState((prev) => ({
+            setFileState(prev => ({
               ...prev,
               progress: Math.round(percentageCompleted),
             }));
@@ -96,7 +96,7 @@ export function Uploader({ value, onChange }: iAppProps) {
 
         xhr.onload = () => {
           if (xhr.status === 200 || xhr.status === 204) {
-            setFileState((prev) => ({
+            setFileState(prev => ({
               ...prev,
               uploading: false,
               progress: 100,
@@ -123,7 +123,7 @@ export function Uploader({ value, onChange }: iAppProps) {
     } catch (error) {
       toast.error("Something went wrong");
 
-      setFileState((prev) => ({
+      setFileState(prev => ({
         ...prev,
         progress: 0,
         error: true,
@@ -155,7 +155,7 @@ export function Uploader({ value, onChange }: iAppProps) {
         uploadFile(file);
       }
     },
-    [fileState.objectUrl],
+    [fileState.objectUrl]
   );
 
   async function handleRemoveFile() {
@@ -164,7 +164,7 @@ export function Uploader({ value, onChange }: iAppProps) {
     }
 
     try {
-      setFileState((prev) => ({
+      setFileState(prev => ({
         ...prev,
         isDeleting: true,
       }));
@@ -180,7 +180,7 @@ export function Uploader({ value, onChange }: iAppProps) {
       if (!response.ok) {
         toast.error("Something went wrong");
 
-        setFileState((prev) => ({
+        setFileState(prev => ({
           ...prev,
           isDeleting: true,
           error: true,
@@ -209,7 +209,7 @@ export function Uploader({ value, onChange }: iAppProps) {
     } catch {
       toast.error("Error removing file. Please try again");
 
-      setFileState((prev) => ({
+      setFileState(prev => ({
         ...prev,
         isDeleting: false,
         error: true,
@@ -220,11 +220,11 @@ export function Uploader({ value, onChange }: iAppProps) {
   function rejectedFiles(fileRejection: FileRejection[]) {
     if (fileRejection.length) {
       const tooManyFiles = fileRejection.find(
-        (rejection) => rejection.errors[0].code === "too-many-files",
+        rejection => rejection.errors[0].code === "too-many-files"
       );
 
       const fileSizeTooBig = fileRejection.find(
-        (rejection) => rejection.errors[0].code === "file-too-large",
+        rejection => rejection.errors[0].code === "file-too-large"
       );
 
       if (fileSizeTooBig) {
@@ -238,7 +238,7 @@ export function Uploader({ value, onChange }: iAppProps) {
   }
 
   function handleRetryUpload() {
-    setFileState((prev) => ({
+    setFileState(prev => ({
       ...prev,
       error: false,
       objectUrl: undefined,
@@ -302,7 +302,7 @@ export function Uploader({ value, onChange }: iAppProps) {
           "relative border-2 border-dashed transition-colors duration-200 ease-in-out w-full h-64",
           isDragActive
             ? "border-primary bg-primary/10 border-solid"
-            : "border-border hover:border-primary",
+            : "border-border hover:border-primary"
         )}
       >
         <CardContent className="flex items-center justify-center h-full p-4">

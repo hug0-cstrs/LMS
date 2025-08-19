@@ -30,7 +30,15 @@ export function RichTextEditor({ field }: { field: any }) {
     },
 
     // Set the initial content from the field value
-    content: field.value ? JSON.parse(field.value) : "<p>Start writing...</p>",
+    content: (() => {
+      if (!field.value) return "<p>Start writing...</p>";
+      try {
+        return JSON.parse(field.value);
+      } catch {
+        // If it's not valid JSON, treat it as plain text
+        return `<p>${field.value}</p>`;
+      }
+    })(),
   });
 
   return (

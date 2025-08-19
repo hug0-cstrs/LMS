@@ -65,7 +65,7 @@ export function EditCourseForm({ data }: iAppProps) {
   async function onSubmit(values: CourseSchemaType) {
     startTransition(async () => {
       const { data: result, error } = await tryCatch(
-        editCourse(values, data.id),
+        editCourse(values, data.id)
       );
       if (error) {
         toast.error("An unexpected error occurred. Please try again.");
@@ -197,7 +197,7 @@ export function EditCourseForm({ data }: iAppProps) {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {courseCategories.map((category) => (
+                    {courseCategories.map(category => (
                       <SelectItem key={category} value={category}>
                         {category}
                       </SelectItem>
@@ -226,7 +226,7 @@ export function EditCourseForm({ data }: iAppProps) {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {courseLevels.map((level) => (
+                    {courseLevels.map(level => (
                       <SelectItem key={level} value={level}>
                         {level}
                       </SelectItem>
@@ -250,9 +250,7 @@ export function EditCourseForm({ data }: iAppProps) {
                     type="number"
                     placeholder="Duration"
                     value={field.value?.toString() || ""}
-                    onChange={(e) =>
-                      field.onChange(Number(e.target.value) || 0)
-                    }
+                    onChange={e => field.onChange(Number(e.target.value) || 0)}
                   />
                 </FormControl>
                 <FormMessage />
@@ -272,9 +270,7 @@ export function EditCourseForm({ data }: iAppProps) {
                     type="number"
                     placeholder="Price"
                     value={field.value?.toString() || ""}
-                    onChange={(e) =>
-                      field.onChange(Number(e.target.value) || 0)
-                    }
+                    onChange={e => field.onChange(Number(e.target.value) || 0)}
                   />
                 </FormControl>
                 <FormMessage />
@@ -297,7 +293,7 @@ export function EditCourseForm({ data }: iAppProps) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {courseStatus.map((status) => (
+                  {courseStatus.map(status => (
                     <SelectItem key={status} value={status}>
                       {status}
                     </SelectItem>

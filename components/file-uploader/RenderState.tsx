@@ -16,7 +16,7 @@ export function RenderEmptyState({ isDragActive }: { isDragActive: boolean }) {
         <CloudUploadIcon
           className={cn(
             "size-6 text-muted-foreground",
-            isDragActive && "text-primary",
+            isDragActive && "text-primary"
           )}
         />
       </div>

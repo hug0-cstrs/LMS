@@ -22,14 +22,14 @@ const aj = arcjet
     detectBot({
       mode: "LIVE",
       allow: [],
-    }),
+    })
   )
   .withRule(
     fixedWindow({
       mode: "LIVE",
       window: "1m", // 1 minute
       max: 5, // 5 requests per minute
-    }),
+    })
   );
 
 export async function POST(request: NextRequest) {
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
     if (!validation.success) {
       return NextResponse.json(
         { error: "Error Request Body" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     return NextResponse.json(
       { error: "Error to generate presigned url" },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

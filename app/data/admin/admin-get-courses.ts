@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { requireAdmin } from "./require-admin";
 
 export async function adminGetCourses() {
+  // await new Promise(resolve => setTimeout(resolve, 2000)); // TODO: Remove this in production
+
   await requireAdmin();
 
   const data = await prisma.course.findMany({

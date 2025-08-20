@@ -44,10 +44,12 @@ import { useForm } from "react-hook-form";
 import slugify from "slugify";
 import { toast } from "sonner";
 import { createCourse } from "./action";
+import { useConfetti } from "@/hooks/use-confetti";
 
 export default function CourseCreationPage() {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+  const { triggerConfetti } = useConfetti();
 
   const form = useForm<CourseSchemaType>({
     resolver: zodResolver(courseSchema),
@@ -65,7 +67,7 @@ export default function CourseCreationPage() {
     },
   });
 
-  async function onSubmit(values: CourseSchemaType) {
+  function onSubmit(values: CourseSchemaType) {
     startTransition(async () => {
       // S'assurer que price et duration sont des nombres
       const processedValues = {
@@ -83,6 +85,7 @@ export default function CourseCreationPage() {
 
       if (result?.status === "success") {
         toast.success(result.message);
+        triggerConfetti();
         form.reset();
         router.push("/admin/courses");
       } else if (result?.status === "error") {
@@ -201,7 +204,11 @@ export default function CourseCreationPage() {
                   <FormItem className="w-full">
                     <FormLabel>Thumbnail image</FormLabel>
                     <FormControl>
-                      <Uploader value={field.value} onChange={field.onChange} fileTypeAccepted="image" />
+                      <Uploader
+                        value={field.value}
+                        onChange={field.onChange}
+                        fileTypeAccepted="image"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

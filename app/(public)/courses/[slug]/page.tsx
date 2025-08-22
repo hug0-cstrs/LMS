@@ -271,10 +271,12 @@ export default async function SlugPage({ params }: { params: Params }) {
                 </ul>
               </div>
 
-              <form action={async () => {
-                "use server";
-                enrollInCourseAction(course.id);
-              }}>
+              <form
+                action={async () => {
+                  "use server";
+                  enrollInCourseAction(course.id);
+                }}
+              >
                 <Button className="w-full">Enroll Now!</Button>
               </form>
               <p className="mt-3 text-center text-xs text-muted-foreground">

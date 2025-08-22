@@ -31,41 +31,41 @@ export async function enrollInCourseAction(
 
     let stripeCustomerId: string;
     const userWithStripeCustomerId = await prisma.user.findUnique({
-        where: {
-            id: user.id
-        },
-        select: {
-            stripeCustomerId: true
-        }
-    })
+      where: {
+        id: user.id,
+      },
+      select: {
+        stripeCustomerId: true,
+      },
+    });
 
     if (userWithStripeCustomerId?.stripeCustomerId) {
-        stripeCustomerId = userWithStripeCustomerId.stripeCustomerId;
+      stripeCustomerId = userWithStripeCustomerId.stripeCustomerId;
     } else {
-        const customer = await stripe.customers.create({
-            email: user.email,
-            name: user.name,
-            metadata: {
-                userId: user.id,
-            },
-        })
+      const customer = await stripe.customers.create({
+        email: user.email,
+        name: user.name,
+        metadata: {
+          userId: user.id,
+        },
+      });
 
-        stripeCustomerId = customer.id;
+      stripeCustomerId = customer.id;
 
-        await prisma.user.update({
-            where: {
-                id: user.id
-            },
-            data: {
-                stripeCustomerId: stripeCustomerId
-            }
-        })
+      await prisma.user.update({
+        where: {
+          id: user.id,
+        },
+        data: {
+          stripeCustomerId: stripeCustomerId,
+        },
+      });
     }
 
     return {
-        status: "success",
-        message: "Stripe customer created successfully",
-    }
+      status: "success",
+      message: "Stripe customer created successfully",
+    };
   } catch {
     return {
       status: "error",

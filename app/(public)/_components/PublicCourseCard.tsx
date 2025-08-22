@@ -15,7 +15,8 @@ interface iAppProps {
 export function PublicCourseCard({ data }: iAppProps) {
   const thumbnailUrl = useConstructUrl(data.fileKey);
   return (
-    <Card className="group relative py-0 gap-0 cursor-pointer">
+    <Link href={`/courses/${data.slug}`} className="block">
+      <Card className="group relative py-0 gap-0 cursor-pointer">
       <Badge className="absolute top-2 right-2 z-10">{data.level}</Badge>
       <Image
         src={thumbnailUrl}
@@ -26,12 +27,9 @@ export function PublicCourseCard({ data }: iAppProps) {
       />
 
       <CardContent className="p-4">
-        <Link
-          href={`/courses/${data.slug}`}
-          className="font-medium text-lg line-clamp-2 hover:underline group-hover:text-primary transition-colors"
-        >
+        <h3 className="font-medium text-lg line-clamp-2 hover:underline group-hover:text-primary transition-colors">
           {data.title}
-        </Link>
+        </h3>
         <p className="line-clamp-2 text-sm text-muted-foreground leading-tight mt-2">
           {data.smallDescription}
         </p>
@@ -46,16 +44,16 @@ export function PublicCourseCard({ data }: iAppProps) {
           </div>
         </div>
 
-        <Link
-          href={`/courses/${data.slug}`}
+        <div
           className={buttonVariants({
             className: "mt-4 w-full",
           })}
         >
           Learn More
-        </Link>
+        </div>
       </CardContent>
     </Card>
+    </Link>
   );
 }
 

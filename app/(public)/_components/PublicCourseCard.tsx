@@ -15,44 +15,44 @@ interface iAppProps {
 export function PublicCourseCard({ data }: iAppProps) {
   const thumbnailUrl = useConstructUrl(data.fileKey);
   return (
-    <Link href={`/courses/${data.slug}`} className="block">
-      <Card className="group relative py-0 gap-0 cursor-pointer">
-      <Badge className="absolute top-2 right-2 z-10">{data.level}</Badge>
-      <Image
-        src={thumbnailUrl}
-        alt="Thumbnail image of course"
-        width={600}
-        height={400}
-        className="object-cover w-full rounded-t-xl aspect-video h-full"
-      />
+    <Link href={`/courses/${data.slug}`} className="block cursor-default">
+      <Card className="group relative py-0 gap-0">
+        <Badge className="absolute top-2 right-2 z-10">{data.level}</Badge>
+        <Image
+          src={thumbnailUrl}
+          alt="Thumbnail image of course"
+          width={600}
+          height={400}
+          className="object-cover w-full rounded-t-xl aspect-video h-full"
+        />
 
-      <CardContent className="p-4">
-        <h3 className="font-medium text-lg line-clamp-2 hover:underline group-hover:text-primary transition-colors">
-          {data.title}
-        </h3>
-        <p className="line-clamp-2 text-sm text-muted-foreground leading-tight mt-2">
-          {data.smallDescription}
-        </p>
-        <div className="mt-4 flex items-center gap-x-5">
-          <div className="flex items-center gap-x-2">
-            <TimerIcon className="size-6 p-1 rounded-md text-primary bg-primary/10" />
-            <p className="text-sm text-muted-foreground">{data.duration}</p>
+        <CardContent className="p-4">
+          <h3 className="font-medium text-lg line-clamp-2 hover:underline group-hover:text-primary transition-colors cursor-pointer">
+            {data.title}
+          </h3>
+          <p className="line-clamp-2 text-sm text-muted-foreground leading-tight mt-2">
+            {data.smallDescription}
+          </p>
+          <div className="mt-4 flex items-center gap-x-5">
+            <div className="flex items-center gap-x-2">
+              <TimerIcon className="size-6 p-1 rounded-md text-primary bg-primary/10" />
+              <p className="text-sm text-muted-foreground">{data.duration}</p>
+            </div>
+            <div className="flex items-center gap-x-2">
+              <SchoolIcon className="size-6 p-1 rounded-md text-primary bg-primary/10" />
+              <p className="text-sm text-muted-foreground">{data.category}</p>
+            </div>
           </div>
-          <div className="flex items-center gap-x-2">
-            <SchoolIcon className="size-6 p-1 rounded-md text-primary bg-primary/10" />
-            <p className="text-sm text-muted-foreground">{data.category}</p>
-          </div>
-        </div>
 
-        <div
-          className={buttonVariants({
-            className: "mt-4 w-full",
-          })}
-        >
-          Learn More
-        </div>
-      </CardContent>
-    </Card>
+          <div
+            className={buttonVariants({
+              className: "mt-4 w-full",
+            })}
+          >
+            Learn More
+          </div>
+        </CardContent>
+      </Card>
     </Link>
   );
 }
